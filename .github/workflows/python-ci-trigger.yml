@@ -5,12 +5,12 @@ on:
     branches:
       - master # Specify the target branch
     paths:
-      - OT-Microservices/attendance/**  # Trigger only for changes in this folder
+      - rohitdevops05112024/OT-Microservices/attendance/**  # Trigger only for changes in this folder
   pull_request:
     branches:
       - master  # Specify the target branch
     paths:
-      - OT-Microservices/attendance/**
+      - rohitdevops05112024/OT-Microservices/attendance/**
 
 jobs:
   attendance-workflow:
