@@ -4,13 +4,11 @@ on:
   push:
     branches:
       - master  # Target branch for pushes
-    paths:
-      - OT-Microservices/attendance/*  # Trigger on changes in this folder
+    
   pull_request:
     branches:
       - master  # Target branch for PRs
-    paths:
-      - OT-Microservices/attendance/*
+    
 
 jobs:
   build-and-test:
