@@ -1,29 +1,25 @@
-name: Attendance Folder CI
+name: Trigger Attendance CI Workflow
 
 on:
   push:
     branches:
-      - master
+      - master  # Trigger only on the master branch
     paths:
       - 'attendance/**'  # Trigger only when files in the attendance folder change
 
 jobs:
-  trigger-attendance-workflow:
+  trigger:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Call Attendance Workflow
-      - name: Run Attendance Workflow
-        run: |
-          cd attendance
-          if [ -f .github/workflows/python-ci.yml ]; then
-            echo "Workflow exists in attendance folder. Proceeding..."
-            exit 0
-          else
-            echo "Error: Workflow file not found in attendance/.github/workflows/"
-            exit 1
-          fi
+      # Step 2: Trigger the attendance build workflow
+      - name: Trigger Attendance Build Workflow
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          repository: ${{ github.repository }}  # Current repository
+          workflow: '.github/workflows/python-ci.yml'  # Path to the second workflow
+          ref: master  # Trigger on the master branch
