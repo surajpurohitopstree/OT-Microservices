@@ -1,0 +1,29 @@
+name: Trigger Attendance Workflow
+
+on:
+  push:
+    branches:
+      - main  # Target branch for pushes
+    paths:
+      - OT-Microservices/attendance/**  # Trigger on changes in this folder
+  pull_request:
+    branches:
+      - main  # Target branch for PRs
+    paths:
+      - OT-Microservices/attendance/**
+
+jobs:
+  trigger-attendance:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    # Trigger the Python CI workflow in the attendance folder
+    - name: Trigger Python CI Workflow
+      run: |
+        cd OT-Microservices/attendance
+        chmod +x python-ci.yml  # Ensure the workflow is executable
+        ./python-ci.yml
