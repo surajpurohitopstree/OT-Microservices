@@ -5,12 +5,12 @@ on:
     branches:
       - master  # Target branch for pushes
     paths:
-      - OT-Microservices/attendance/**  # Trigger on changes in this folder
+      - OT-Microservices/attendance/* # Trigger on changes in this folder
   pull_request:
     branches:
       - master  # Target branch for PRs
     paths:
-      - OT-Microservices/attendance/**
+      - OT-Microservices/attendance/*
 
 jobs:
   trigger-attendance:
