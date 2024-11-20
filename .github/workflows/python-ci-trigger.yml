@@ -2,15 +2,20 @@ name: Trigger Attendance Workflow
 
 on:
   push:
+    branches:
+      - main  # Specify the target branch
     paths:
-      - OT-Microservices/attendance/**
+      - OT-Microservices/attendance/**  # Trigger only for changes in this folder
   pull_request:
+    branches:
+      - master  # Specify the target branch
     paths:
       - OT-Microservices/attendance/**
 
 jobs:
   attendance-workflow:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
@@ -18,4 +23,5 @@ jobs:
     - name: Run Attendance Workflow
       run: |
         cd OT-Microservices/attendance
+        chmod +x python-ci.yml  # Ensure the file is executable
         ./python-ci.yml
