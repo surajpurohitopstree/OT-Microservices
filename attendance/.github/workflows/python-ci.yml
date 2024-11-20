@@ -1,7 +1,10 @@
 name: Python CI for Attendance
 
 on:
-  workflow_dispatch:  # Triggered by the root-level workflow
+  workflow_run:
+    workflows: ["Trigger Attendance CI Workflow"]  # Listen to the root-level workflow trigger
+    types:
+      - completed  # Trigger only when the root-level workflow completes
 
 jobs:
   build-and-test:
