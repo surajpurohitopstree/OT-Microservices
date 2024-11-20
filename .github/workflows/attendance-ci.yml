@@ -21,11 +21,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const context = require('@actions/github').context;
             const token = process.env.GITHUB_TOKEN;
-            const repo = context.repo.repo;
-            const owner = context.repo.owner;
-            const workflow_id = 'python-ci.yml'; // The name of the second workflow file
+            const repo = '${{ github.repository }}';
+            const owner = '${{ github.repository_owner }}';
+            const workflow_id = 'python-ci.yml';  # The name of the second workflow file
 
             // Call the workflow_dispatch event to trigger the second workflow
             await github.rest.actions.createWorkflowDispatch({
