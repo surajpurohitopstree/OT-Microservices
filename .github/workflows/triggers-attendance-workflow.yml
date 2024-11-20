@@ -3,12 +3,12 @@ name: Trigger Attendance Workflow
 on:
   push:
     branches:
-      - main  # Target branch for pushes
+      - master  # Target branch for pushes
     paths:
       - OT-Microservices/attendance/**  # Trigger on changes in this folder
   pull_request:
     branches:
-      - main  # Target branch for PRs
+      - master  # Target branch for PRs
     paths:
       - OT-Microservices/attendance/**
 
