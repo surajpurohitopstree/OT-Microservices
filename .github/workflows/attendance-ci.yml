@@ -3,7 +3,7 @@ name: Trigger Attendance CI Workflow
 on:
   push:
     branches:
-      - master  # Trigger only on the master branch
+      - master
     paths:
       - 'attendance/**'  # Trigger only when files in the attendance folder change
 
@@ -16,10 +16,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Trigger the attendance build workflow
+      # Step 2: Set up a GitHub API to trigger another workflow using `workflow_run`
       - name: Trigger Attendance Build Workflow
-        uses: peter-evans/workflow-dispatch@v1
+        uses: actions/github-script@v6
         with:
-          repository: ${{ github.repository }}  # Current repository
-          workflow: '.github/workflows/python-ci.yml'  # Path to the second workflow
-          ref: master  # Trigger on the master branch
+          script: |
+            const context = require('@actions/github').context;
+            const token = process.env.GITHUB_TOKEN;
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+            const workflow_id = 'python-ci.yml'; // The name of the second workflow file
+
+            // Call the workflow_dispatch event to trigger the second workflow
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id,
+              ref: 'refs/heads/master'
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
