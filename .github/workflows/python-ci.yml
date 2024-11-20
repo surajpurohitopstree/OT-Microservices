@@ -1,0 +1,21 @@
+name: Trigger Attendance Workflow
+
+on:
+  push:
+    paths:
+      - OT-Microservices/attendance/**
+  pull_request:
+    paths:
+      - OT-Microservices/attendance/**
+
+jobs:
+  attendance-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Run Attendance Workflow
+      run: |
+        cd OT-Microservices/attendance
+        ./python-ci.yml
