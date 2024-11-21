@@ -15,6 +15,18 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
+      
+      - name: Trigger Salary Build Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'java-ci.yml',  # Path to the CI workflow 
+              ref: context.ref  # Use the current branch (e.g., main)
+            });
+            console.log('Triggered Microservice workflow:', response.status);
 
       # Step 2: Trigger the second workflow directly via workflow_run event
       # - name: Trigger Salary Build Workflow

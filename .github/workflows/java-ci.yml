@@ -1,10 +1,7 @@
 name: Build Spring Application with Maven
 
 on:
-  workflow_run:
-    workflows: ["Trigger Salary CI Workflow"]  # Listen to the root-level workflow trigger
-    types:
-      - completed  # Trigger only when the root-level workflow completes
+  workflow_dispatch:
 
 Jobs:
   build:
