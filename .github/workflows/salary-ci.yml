@@ -20,7 +20,7 @@ jobs:
         run: |
           # Define variables
           WORKFLOW="java-ci"
-          API_URL="https://api.github.com/repos/${{ github.repository }}/actions/workflows/$WORKFLOW.yml/dispatches"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/actions/workflows/"$WORKFLOW".yml/dispatches"
           TOKEN="${{ secrets.GITHUB_TOKEN }}"
           
           # Trigger the second workflow
