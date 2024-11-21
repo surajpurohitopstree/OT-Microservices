@@ -17,22 +17,14 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Trigger Salary Build Workflow
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const response = await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'java-ci.yml',  # Path to the CI workflow 
-              ref: context.ref  # Use the current branch (e.g., main)
-            });
-            console.log('Triggered Microservice workflow:', response.status);
-
-      # Step 2: Trigger the second workflow directly via workflow_run event
-      # - name: Trigger Salary Build Workflow
-      #   uses: peter-evans/workflow-dispatch@v1
-      #   with:
-      #     workflow: "build.yml"    # The workflow file to trigger in the attendance folder
-      #     ref: "refs/heads/master"     # Branch to trigger the workflow for
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         run: |
+          # Define variables
+          WORKFLOW="java-ci"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/actions/workflows/$WORKFLOW.yml/dispatches"
+          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          
+          # Trigger the second workflow
+          curl -X POST "$API_URL" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer $TOKEN" \
+            -d '{"ref": "main"}'
