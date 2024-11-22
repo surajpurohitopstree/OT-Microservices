@@ -9,7 +9,6 @@ on:
 
 jobs:
   trigger:
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/java-ci.yml
 
     # steps:
