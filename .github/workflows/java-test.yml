@@ -1,10 +1,7 @@
 name: Test spring boot application
 
 on:
-  workflow_run:
-    workflows: ["Build Spring Application with Maven"]  # Listen to the root-level workflow trigger
-    types:
-      - completed  # Trigger only when the root-level workflow completes
+  workflow_call::
 
 Jobs:
   build:
