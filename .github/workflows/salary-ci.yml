@@ -10,6 +10,7 @@ on:
 jobs:
   trigger:
     uses: ./.github/workflows/java-ci.yml
+    uses: ./.github/workflows/java-test.yml
 
     # steps:
     #   # Step 1: Checkout the repository
