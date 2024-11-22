@@ -10,6 +10,7 @@ on:
 jobs:
   trigger:
     runs-on: ubuntu-latest
+    uses: ./.github/workflows/java-ci.yml
 
     steps:
       # Step 1: Checkout the repository
@@ -21,8 +22,7 @@ jobs:
           ls
           pwd
       
-      - name: Trigger Salary Build Workflow
-        uses: ./.github/workflows/java-ci.yml
+      
         # run: |
         #   # Define variables
         #   WORKFLOW="java-ci"
