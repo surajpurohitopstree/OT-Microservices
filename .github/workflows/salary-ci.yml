@@ -11,7 +11,6 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     uses: ./.github/workflows/java-ci.yml
-    run: ls
 
     # steps:
     #   # Step 1: Checkout the repository
