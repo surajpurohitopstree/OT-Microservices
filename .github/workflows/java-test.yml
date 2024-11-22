@@ -3,7 +3,7 @@ name: Test spring boot application
 on:
   workflow_call:
 
-Jobs:
+jobs:
   test:
     runs-on: ubuntu-latest
 
