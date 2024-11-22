@@ -7,9 +7,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-  defaults:
-      run:
-        working-directory: salary
+    defaults:
+        run:
+          working-directory: salary
 
     steps:
     - uses: actions/checkout@v2
