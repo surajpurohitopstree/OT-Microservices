@@ -11,6 +11,7 @@ jobs:
   trigger-build:
     uses: ./.github/workflows/java-ci.yml
   trigger-test:
+    needs: trigger-build
     uses: ./.github/workflows/java-test.yml
 
     # steps:
