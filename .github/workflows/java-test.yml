@@ -1,10 +1,10 @@
 name: Test spring boot application
 
 on:
-  workflow_call::
+  workflow_call:
 
 Jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +14,7 @@ Jobs:
       with:
         java-version: 17
 
-    - name: Build project with Maven
+    - name: Test project with Maven
       run: |
         mvn test
         
