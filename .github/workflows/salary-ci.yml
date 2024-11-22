@@ -11,16 +11,17 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     uses: ./.github/workflows/java-ci.yml
+    run: ls
 
-    steps:
-      # Step 1: Checkout the repository
-      - name: Checkout Code
-        uses: actions/checkout@v3
+    # steps:
+    #   # Step 1: Checkout the repository
+    #   - name: Checkout Code
+    #     uses: actions/checkout@v3
 
-      - name: List workdir
-        run: |
-          ls
-          pwd
+    #   - name: List workdir
+    #     run: |
+    #       ls
+    #       pwd
       
       
         # run: |
