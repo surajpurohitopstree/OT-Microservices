@@ -8,8 +8,9 @@ on:
       - 'salary/**'  # Trigger only when files in the salary folder change
 
 jobs:
-  trigger:
+  trigger-build:
     uses: ./.github/workflows/java-ci.yml
+  trigger-test:
     uses: ./.github/workflows/java-test.yml
 
     # steps:
