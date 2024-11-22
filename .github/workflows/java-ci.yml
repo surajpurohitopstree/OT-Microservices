@@ -1,7 +1,7 @@
 name: Build Spring Application with Maven
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:
